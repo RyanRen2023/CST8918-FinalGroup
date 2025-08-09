@@ -1,0 +1,22 @@
+services:
+  weather-app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: cst8918a03duan0027-image:v0.3.0
+    container_name: remix-weather-app
+    ports:
+      - "3000:3000" # Remix 默认监听 3000，你可以在浏览器访问 http://localhost:8080
+    environment:
+      - WEATHER_API_KEY=2bb6ce53b59881f0ea7a5dfd3e083d45
+      - REDIS_URL=redis://redis:6379
+    depends_on:
+      - redis
+    restart: unless-stopped
+
+  redis:
+    image: redis:7
+    container_name: redis
+    ports:
+      - "6379:6379"
+    restart: unless-stopped
