@@ -1,7 +1,7 @@
 {
     "name": "pull-request",
     "issuer": "https://token.actions.githubusercontent.com",
-    "subject": "repo:RyanRen2023/CST8918-FinalGroup:environment:pull_request",
+    "subject": "repo:RyanRen2023/CST8918-FinalGroup:pull_request",
     "description": "CST8918 Final Group - GitHub Actions",
     "audiences": ["api://AzureADTokenExchange"]
   }
