@@ -13,7 +13,7 @@ variable "location" {
 variable "tags" {
   description = "Optional resource tags."
   type        = map(string)
-  default     = {
+  default = {
     "Cost Center" = "000"
   }
 }

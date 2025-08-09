@@ -21,7 +21,7 @@ terraform {
 # provider "azurerm" { features {} }
 
 locals {
-  rg_name  = "cst8918-final-project-group-${var.group_number}"
+  rg_name   = "cst8918-final-project-group-${var.group_number}"
   vnet_name = "${local.rg_name}-vnet"
 
   # Fixed design per requirements

@@ -4,10 +4,10 @@ resource "azurerm_resource_group" "app_rg" {
 }
 
 module "network" {
-  source = "./modules/network"
+  source       = "./modules/network"
   group_number = var.group_number
-  location = var.resource_group_location
-  tags = var.tags
+  location     = var.resource_group_location
+  tags         = var.tags
 }
 
 # resource "azurerm_resource_group" "test_rg" {

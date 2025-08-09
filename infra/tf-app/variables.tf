@@ -20,7 +20,7 @@ variable "tags" {
 
   type        = map(string)
   description = "The tags for the resource group"
-  default     = {
+  default = {
     "Cost Center" = "000"
   }
 }
