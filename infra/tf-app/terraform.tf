@@ -9,10 +9,15 @@ terraform {
   }
 
   backend "azurerm" {
-    resource_group_name  = "ren00055-githubactions-rg"
-    storage_account_name = "ren00055githubactionsa"
+    resource_group_name  = "group10-githubactions-rg"
+    storage_account_name = "group10githubactionsa"
     container_name       = "tfstate"
     key                  = "prod.app.tfstate"
     use_oidc             = true
   }
+}
+
+provider "azurerm" {
+  features {}
+  use_oidc = true
 }
