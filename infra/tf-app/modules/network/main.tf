@@ -1,10 +1,19 @@
 terraform {
-  required_version = ">= 1.4.0"
+  required_version = ">= 1.3.0"
+
   required_providers {
     azurerm = {
       source  = "hashicorp/azurerm"
-      version = ">= 3.100.0"
+      version = "3.96.0"
     }
+  }
+
+  backend "azurerm" {
+    resource_group_name  = "group10-githubactions-rg"
+    storage_account_name = "group10githubactionsa"
+    container_name       = "tfstate"
+    key                  = "prod.app.tfstate"
+    use_oidc             = true
   }
 }
 
