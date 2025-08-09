@@ -59,11 +59,14 @@ jobs:
       runs-on: ubuntu-latest
       env:
         #this is needed since we are running terraform with read-only permissions
+        ARM_CLIENT_ID: ${{ secrets.AZURE_CLIENT_ID_R }}
         ARM_SKIP_PROVIDER_REGISTRATION: true
       outputs:
         tfplanExitCode: ${{ steps.tf-plan.outputs.exitcode }}
 
       steps:
+
+      
       # Checkout the repository to the GitHub Actions runner
       - name: Checkout
         uses: actions/checkout@v4
