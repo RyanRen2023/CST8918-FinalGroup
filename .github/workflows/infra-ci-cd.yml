@@ -77,11 +77,13 @@ jobs:
 
       - name: Out put env variables
         run: |
-          echo "ARM_CLIENT_ID: ${{ secrets.AZURE_CLIENT_ID_R }}" >> $GITHUB_OUTPUT
-          echo "ARM_SUBSCRIPTION_ID: ${{ secrets.AZURE_SUBSCRIPTION_ID }}" >> $GITHUB_OUTPUT
-          echo "ARM_TENANT_ID: ${{ secrets.AZURE_TENANT_ID }}" >> $GITHUB_OUTPUT
-          echo "ARM_ACCESS_KEY: ${{ secrets.ARM_ACCESS_KEY }}" >> $GITHUB_OUTPUT
-          echo "ARM_USE_OIDC: true" >> $GITHUB_OUTPUT
+          {
+            echo "ARM_CLIENT_ID=${{ secrets.AZURE_CLIENT_ID_R }}"
+            echo "ARM_SUBSCRIPTION_ID=${{ secrets.AZURE_SUBSCRIPTION_ID }}"
+            echo "ARM_TENANT_ID=${{ secrets.AZURE_TENANT_ID }}"
+            echo "ARM_ACCESS_KEY=${{ secrets.ARM_ACCESS_KEY }}"
+            echo "ARM_USE_OIDC=true"
+          } >> $GITHUB_OUTPUT
 
       # Initialize a new or existing Terraform working directory by creating initial files, loading any remote state, downloading modules, etc.
       - name: Terraform Init
@@ -185,11 +187,13 @@ jobs:
 
     - name: Out put env variables
       run: |
-        echo "ARM_CLIENT_ID: ${{ secrets.AZURE_CLIENT_ID_R }}" >> $GITHUB_OUTPUT
-        echo "ARM_SUBSCRIPTION_ID: ${{ secrets.AZURE_SUBSCRIPTION_ID }}" >> $GITHUB_OUTPUT
-        echo "ARM_TENANT_ID: ${{ secrets.AZURE_TENANT_ID }}" >> $GITHUB_OUTPUT
-        echo "ARM_ACCESS_KEY: ${{ secrets.ARM_ACCESS_KEY }}" >> $GITHUB_OUTPUT
-        echo "ARM_USE_OIDC: true" >> $GITHUB_OUTPUT
+        {
+          echo "ARM_CLIENT_ID=${{ secrets.AZURE_CLIENT_ID }}"
+          echo "ARM_SUBSCRIPTION_ID=${{ secrets.AZURE_SUBSCRIPTION_ID }}"
+          echo "ARM_TENANT_ID=${{ secrets.AZURE_TENANT_ID }}"
+          echo "ARM_ACCESS_KEY=${{ secrets.ARM_ACCESS_KEY }}"
+          echo "ARM_USE_OIDC=true"
+        } >> $GITHUB_OUTPUT
 
     # Initialize a new or existing Terraform working directory by creating initial files, loading any remote state, downloading modules, etc.
     - name: Terraform Init
