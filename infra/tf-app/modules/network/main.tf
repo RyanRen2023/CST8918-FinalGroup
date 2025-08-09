@@ -7,22 +7,13 @@ terraform {
       version = "3.96.0"
     }
   }
-
-  backend "azurerm" {
-    resource_group_name  = "group10-githubactions-rg"
-    storage_account_name = "group10githubactionsa"
-    container_name       = "tfstate"
-    key                  = "prod.app.tfstate"
-    use_oidc             = true
-  }
 }
 
 # Provider configuration is expected in the root module.
 # provider "azurerm" { features {} }
 
 locals {
-  rg_name   = "cst8918-final-project-group-${var.group_number}"
-  vnet_name = "${local.rg_name}-vnet"
+  vnet_name = "${var.resource_group_name}-vnet"
 
   # Fixed design per requirements
   vnet_address_space = ["10.0.0.0/14"]
@@ -35,16 +26,14 @@ locals {
   }
 }
 
-resource "azurerm_resource_group" "rg" {
-  name     = local.rg_name
-  location = var.location
-  tags     = var.tags
+data "azurerm_resource_group" "rg" {
+  name = var.resource_group_name
 }
 
 resource "azurerm_virtual_network" "vnet" {
   name                = local.vnet_name
-  location            = azurerm_resource_group.rg.location
-  resource_group_name = azurerm_resource_group.rg.name
+  location            = var.location
+  resource_group_name = var.resource_group_name
   address_space       = local.vnet_address_space
   tags                = var.tags
 }
@@ -52,7 +41,7 @@ resource "azurerm_virtual_network" "vnet" {
 resource "azurerm_subnet" "subnet" {
   for_each             = local.subnets
   name                 = each.key
-  resource_group_name  = azurerm_resource_group.rg.name
+  resource_group_name  = var.resource_group_name
   virtual_network_name = azurerm_virtual_network.vnet.name
   address_prefixes     = [each.value]
 }

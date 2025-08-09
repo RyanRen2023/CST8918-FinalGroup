@@ -1,13 +1,15 @@
+
 resource "azurerm_resource_group" "app_rg" {
   name     = var.resource_group_name
   location = var.resource_group_location
 }
 
 module "network" {
-  source       = "./modules/network"
-  group_number = var.group_number
-  location     = var.resource_group_location
-  tags         = var.tags
+  source              = "./modules/network"
+  group_number        = var.group_number
+  location            = var.resource_group_location
+  resource_group_name = azurerm_resource_group.app_rg.name
+  tags                = var.tags
 }
 
 # resource "azurerm_resource_group" "test_rg" {

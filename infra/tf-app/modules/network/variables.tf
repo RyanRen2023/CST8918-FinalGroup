@@ -10,6 +10,11 @@ variable "location" {
   default     = "canadacentral"
 }
 
+variable "resource_group_name" {
+  description = "Name of the existing resource group provided by root module."
+  type        = string
+}
+
 variable "tags" {
   description = "Optional resource tags."
   type        = map(string)
