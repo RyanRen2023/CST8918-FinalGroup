@@ -3,10 +3,10 @@ resource "azurerm_resource_group" "app_rg" {
   location = var.resource_group_location
 }
 
-resource "azurerm_resource_group" "test_rg" {
-  name     = "test-rg"
-  location = var.resource_group_location
-}
+# resource "azurerm_resource_group" "test_rg" {
+#   name     = "test-rg"
+#   location = var.resource_group_location
+# }
 
 # resource "azurerm_storage_account" "storage_account" {
 #   name                     = "ren00055a12storage"
