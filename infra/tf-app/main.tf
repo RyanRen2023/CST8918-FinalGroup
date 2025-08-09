@@ -3,6 +3,13 @@ resource "azurerm_resource_group" "app_rg" {
   location = var.resource_group_location
 }
 
+module "network" {
+  source       = "./modules/network"
+  group_number = var.group_number
+  location     = var.resource_group_location
+  tags         = var.tags
+}
+
 # resource "azurerm_resource_group" "test_rg" {
 #   name     = "test-rg"
 #   location = var.resource_group_location
